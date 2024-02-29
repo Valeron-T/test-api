@@ -21,16 +21,15 @@ with st.form("my_form"):
 
     col1, col2 = st.columns(2)
 
-
     # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
     if submitted:
         print(card_number, name, cvv, exp)
-        response = requests.post("https://test-api-lemon-one.vercel.app/checkout", {
-            "name": name,
-            "number": card_number,
+        response = requests.post("https://test-api-lemon-one.vercel.app/checkout", json={
+            "name": name.replace(' ', '%20'),
+            "number": int(card_number),
             "exp": exp,
-            "cvv": cvv
+            "cvv": int(cvv)
         })
         st.write("Response")
         st.write(response.json())
