@@ -7,7 +7,7 @@ app = FastAPI()
 @app.get("/")
 async def root():
     # Your processing logic
-    await asyncio.sleep(2)
+    # await asyncio.sleep(2)
     return {"message": "Hello World"}
 
 
