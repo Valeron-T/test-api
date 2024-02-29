@@ -1,12 +1,13 @@
 import streamlit as st
+import requests
 
 with st.form("my_form"):
     st.write("Checkout")
     st.write("Please enter card details to proceed.")
 
-    card_number = st.text_input('Card Holder\'s Name')
+    name = st.text_input('Card Holder\'s Name')
 
-    name = st.text_input('Card Number', max_chars=15)
+    card_number = st.text_input('Card Number', max_chars=15)
 
     col1, col2 = st.columns(2)
 
@@ -25,3 +26,8 @@ with st.form("my_form"):
     submitted = st.form_submit_button("Submit")
     if submitted:
         print(card_number, name, cvv, exp)
+        furl = f"https://mockservicecustomapi340180.mock.blazemeter.com/api/validate?name={name.replace(' ', '%20')}&cvv={cvv}&exp={exp}&cardnumber={card_number}"
+        response = requests.get(furl)
+        print(furl)
+        st.write("Response")
+        st.write(response.json())
