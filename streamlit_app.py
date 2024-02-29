@@ -7,7 +7,7 @@ with st.form("my_form"):
 
     name = st.text_input('Card Holder\'s Name')
 
-    card_number = st.text_input('Card Number', max_chars=15)
+    card_number = st.text_input('Card Number', max_chars=16)
 
     col1, col2 = st.columns(2)
 
