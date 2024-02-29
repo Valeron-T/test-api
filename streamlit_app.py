@@ -26,8 +26,11 @@ with st.form("my_form"):
     submitted = st.form_submit_button("Submit")
     if submitted:
         print(card_number, name, cvv, exp)
-        furl = f"https://mockservicecustomapi340180.mock.blazemeter.com/api/validate?name={name.replace(' ', '%20')}&cvv={cvv}&exp={exp}&cardnumber={card_number}"
-        response = requests.get(furl)
-        print(furl)
+        response = requests.post("https://test-api-lemon-one.vercel.app/checkout", {
+            "name": name,
+            "number": card_number,
+            "exp": exp,
+            "cvv": cvv
+        })
         st.write("Response")
         st.write(response.json())

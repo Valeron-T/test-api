@@ -26,7 +26,6 @@ async def checkout(card: CardInfo):
     # Assume everything is valid and pass info to payment gateway
     furl = f"https://mockservicecustomapi340180.mock.blazemeter.com/api/validate?name={card.name.replace(' ', '%20')}&cvv={card.cvv}&exp={card.exp}&cardnumber={card.number}"
     response = requests.get(furl)
-    print(furl)
     return {"status": response.json()}
 
 
